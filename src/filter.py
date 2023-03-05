@@ -56,24 +56,23 @@ def price(ticker,date):
     
     if ticker:
         for i in range(len(ticker)):
-            good = stock.Ticker(str(ticker[i]))
             start = date + timedelta(days=1)
             end = start + timedelta(days=15)
-            a = good.history(start=start,end=end)
+            a = stock.download(str(ticker[i]),start=start,end=end)
 
-            min = a.Close.min()
-            max = a.Close.max()
+            min = a['Adj Close'].min()
+            max = a['Adj Close'].max()
             print((max-min)/min)
 
             tol = tol + (max-min)/min if not a.empty else tol + 0 
-            aa.append(ticker[i]) if ((max-min)/min) >= 0.10 else None
-
+            # aa.append(ticker[i]) if ((max-min)/min) >= 0.10 else None
+            print(str(ticker[i]))
             print("accumulated:",tol)
 
         print(ticker , len(ticker))
         ave = tol / len(ticker)
 
-    return aa , ave
+    return ave
 
 
 
@@ -85,12 +84,15 @@ if __name__ == '__main__':
     average_percent = []
     ave_plt = []
 
-    df = pd.read_csv('row_data.csv')
+    df = pd.read_csv('D:/PYTHON/Dataset/Growin/row_data.csv')
+    df = df.drop(df[df['ticker'] == 'GTLS PR B'].index)
 
     season = df.date.unique()
     season = [datetime.strptime(x,'%Y-%m-%d') for x in season]
     investor = df.investor.unique()
 
+    # a = stock.download('GTLS PR B',start='2023-01-01',end='2023-03-04')
+    # print(a)
     for name in ['Janus Henderson Investors']:
     
         df_season = sensonzier(df,name)
@@ -99,15 +101,13 @@ if __name__ == '__main__':
 
 
         for index,element in enumerate(new_ticker_list):
-            filted_list,ave = price(element,season[1+index])
-            better_10.append(filted_list)
+            ave = price(element,season[1+index])
             tol_ave = tol_ave + ave
             ave_plt.append(ave)
         tol_average = tol_ave/len(new_ticker_list)
-        investor_dict = {name : better_10}
         average_dict = {name : tol_ave/len(new_ticker_list)}
 
-    print(investor_dict)   
+
     print(average_dict)
 
     x = np.arange(1,12)
