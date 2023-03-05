@@ -50,7 +50,7 @@ def new_tickers(season_tickers):
 # output the average wave 
 
 def price(ticker,date,investor):
-    aa=[]
+
     tol = 0
     ave = 0
     count = 0
@@ -81,24 +81,19 @@ def price(ticker,date,investor):
 def same_tickers(season_tickers):
 
 
-    # print(season_tickers[6][season_tickers[6]['ticker'] == 'S'])
+    x1 = [x for x in season_tickers[1].ticker if x in season_tickers[0].ticker.values and season_tickers[0][season_tickers[0]['ticker'] == x].head(1).shares.values == season_tickers[1][season_tickers[1]['ticker'] == x].head(1).shares.values]
+    x2 = [x for x in season_tickers[2].ticker if x in season_tickers[1].ticker.values and season_tickers[2][season_tickers[2]['ticker'] == x].head(1).shares.values == season_tickers[1][season_tickers[1]['ticker'] == x].head(1).shares.values] 
+    x3 = [x for x in season_tickers[3].ticker if x in season_tickers[2].ticker.values and season_tickers[3][season_tickers[3]['ticker'] == x].head(1).shares.values == season_tickers[2][season_tickers[2]['ticker'] == x].head(1).shares.values]
+    x4 = [x for x in season_tickers[4].ticker if x in season_tickers[3].ticker.values and season_tickers[4][season_tickers[4]['ticker'] == x].head(1).shares.values == season_tickers[3][season_tickers[3]['ticker'] == x].head(1).shares.values]
+    x5 = [x for x in season_tickers[5].ticker if x in season_tickers[4].ticker.values and season_tickers[5][season_tickers[5]['ticker'] == x].head(1).shares.values == season_tickers[4][season_tickers[4]['ticker'] == x].head(1).shares.values]
+    x6 = [x for x in season_tickers[6].ticker if x in season_tickers[5].ticker.values and season_tickers[6][season_tickers[6]['ticker'] == x].head(1).shares.values == season_tickers[5][season_tickers[5]['ticker'] == x].head(1).shares.values]
+    x7 = [x for x in season_tickers[7].ticker if x in season_tickers[6].ticker.values and season_tickers[7][season_tickers[7]['ticker'] == x].head(1).shares.values == season_tickers[6][season_tickers[6]['ticker'] == x].head(1).shares.values]
+    x8 = [x for x in season_tickers[8].ticker if x in season_tickers[7].ticker.values and season_tickers[8][season_tickers[8]['ticker'] == x].head(1).shares.values == season_tickers[7][season_tickers[7]['ticker'] == x].head(1).shares.values]
+    x9 = [x for x in season_tickers[9].ticker if x in season_tickers[8].ticker.values and season_tickers[9][season_tickers[9]['ticker'] == x].head(1).shares.values == season_tickers[8][season_tickers[8]['ticker'] == x].head(1).shares.values]
+    x10 = [x for x in season_tickers[10].ticker if x in season_tickers[9].ticker.values and season_tickers[10][season_tickers[10]['ticker'] == x].head(1).shares.values == season_tickers[9][season_tickers[9]['ticker'] == x].head(1).shares.values]
+    x11 = [x for x in season_tickers[11].ticker if x in season_tickers[10].ticker.values and season_tickers[11][season_tickers[11]['ticker'] == x].head(1).shares.values == season_tickers[10][season_tickers[10]['ticker'] == x].head(1).shares.values]
 
-    for x in season_tickers[1].ticker:
-
-        x1 = [x for x in season_tickers[1].ticker if x in season_tickers[0].ticker.values and season_tickers[0][season_tickers[0]['ticker'] == x].head(1).shares.values == season_tickers[1][season_tickers[1]['ticker'] == x].head(1).shares.values]
-        x2 = [x for x in season_tickers[2].ticker if x in season_tickers[1].ticker.values and season_tickers[2][season_tickers[2]['ticker'] == x].head(1).shares.values == season_tickers[1][season_tickers[1]['ticker'] == x].head(1).shares.values] 
-        x3 = [x for x in season_tickers[3].ticker if x in season_tickers[2].ticker.values and season_tickers[3][season_tickers[3]['ticker'] == x].head(1).shares.values == season_tickers[2][season_tickers[2]['ticker'] == x].head(1).shares.values]
-        x4 = [x for x in season_tickers[4].ticker if x in season_tickers[3].ticker.values and season_tickers[4][season_tickers[4]['ticker'] == x].head(1).shares.values == season_tickers[3][season_tickers[3]['ticker'] == x].head(1).shares.values]
-        x5 = [x for x in season_tickers[5].ticker if x in season_tickers[4].ticker.values and season_tickers[5][season_tickers[5]['ticker'] == x].head(1).shares.values == season_tickers[4][season_tickers[4]['ticker'] == x].head(1).shares.values]
-        x6 = [x for x in season_tickers[6].ticker if x in season_tickers[5].ticker.values and season_tickers[6][season_tickers[6]['ticker'] == x].head(1).shares.values == season_tickers[5][season_tickers[5]['ticker'] == x].head(1).shares.values]
-        x7 = [x for x in season_tickers[7].ticker if x in season_tickers[6].ticker.values and season_tickers[7][season_tickers[7]['ticker'] == x].head(1).shares.values == season_tickers[6][season_tickers[6]['ticker'] == x].head(1).shares.values]
-        x8 = [x for x in season_tickers[8].ticker if x in season_tickers[7].ticker.values and season_tickers[8][season_tickers[8]['ticker'] == x].head(1).shares.values == season_tickers[7][season_tickers[7]['ticker'] == x].head(1).shares.values]
-        x9 = [x for x in season_tickers[9].ticker if x in season_tickers[8].ticker.values and season_tickers[9][season_tickers[9]['ticker'] == x].head(1).shares.values == season_tickers[8][season_tickers[8]['ticker'] == x].head(1).shares.values]
-        x10 = [x for x in season_tickers[10].ticker if x in season_tickers[9].ticker.values and season_tickers[10][season_tickers[10]['ticker'] == x].head(1).shares.values == season_tickers[9][season_tickers[9]['ticker'] == x].head(1).shares.values]
-        x11 = [x for x in season_tickers[11].ticker if x in season_tickers[10].ticker.values and season_tickers[11][season_tickers[11]['ticker'] == x].head(1).shares.values == season_tickers[10][season_tickers[10]['ticker'] == x].head(1).shares.values]
-
-
-        return x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11
+    return x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11
 
 
 # a = stock.download('BF.B',start='2023-01-01',end='2023-01-20')
@@ -118,17 +113,14 @@ if __name__ == '__main__':
     season = df.date.unique()
     season = [datetime.strptime(x,'%Y-%m-%d') for x in season]
     investor = df.investor.unique()
-    print(investor)
      
 
-    
 
     # a = stock.download('GTLS PR B',start='2023-01-01',end='2023-03-04')
     # print(a)
     for name in investor[0:1]:
     
         df_season = sensonzier(df,name)
-        print(df_season)
         new_ticker_list = new_tickers(df_season)
         same = same_tickers(df_season)
 
