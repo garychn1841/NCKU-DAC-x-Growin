@@ -49,7 +49,7 @@ def new_tickers(season_tickers):
 # price(ticker = the list of new tickers are add for indivdually season)
 # output the average wave 
 
-def price(ticker,date,investor):
+def price(ticker,date,investor,phase,index):
 
     tol = 0
     ave = 0
@@ -64,16 +64,16 @@ def price(ticker,date,investor):
 
             min = a['Adj Close'].min()
             max = a['Adj Close'].max()
-            print(print(investor,ticker[i]))
 
             if not a.empty:
                 tol = tol + (max-min)/min 
                 count = count + 1
+                print(print(investor,ticker[i],phase,index,'%d/%d'%(count,len(ticker))))
             # aa.append(ticker[i]) if ((max-min)/min) >= 0.10 else None
         #     print(str(ticker[i]))
         #     print("accumulated:",tol)
 
-        # print(ticker , len(ticker))
+        # print(ticker , len(ticker))＄Ｓ
         ave = tol / count
 
     return ave
@@ -114,11 +114,11 @@ if __name__ == '__main__':
     season = [datetime.strptime(x,'%Y-%m-%d') for x in season]
     investor = df.investor.unique()
      
-
+    print(investor)
 
     # a = stock.download('GTLS PR B',start='2023-01-01',end='2023-03-04')
     # print(a)
-    for name in investor[0:1]:
+    for name in investor[0:5]:
     
         df_season = sensonzier(df,name)
         new_ticker_list = new_tickers(df_season)
@@ -129,12 +129,12 @@ if __name__ == '__main__':
 
 
         for index,element in enumerate(new_ticker_list):
-            ave = price(element,season[1+index],name)
+            ave = price(element,season[1+index],name,"new",index)
             tol_ave = tol_ave + ave
             ave_plt.append(ave)
 
         for index,element in enumerate(same):
-            same_ave = price(element,season[1+index],name)
+            same_ave = price(element,season[1+index],name,'same',index)
             tol_ave_same = tol_ave + same_ave
             ave_plt.append(same_ave)
 
