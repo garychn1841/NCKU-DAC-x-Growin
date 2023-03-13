@@ -104,8 +104,10 @@ if __name__ == '__main__':
     better_10 = []
     average_percent = []
     ave_plt = []
+    average_dict = {}
 
     df = pd.read_csv('/Users/gary/Documents/Python/data/growin/row_data.csv')
+    df = df[df['style']=='Hedge Fund']
     df = df.drop(df[df['ticker'] == 'GTLS PR B'].index)
     df = df.drop(df[df['ticker'] == 'S'].index)
     # unchangelist(df)
@@ -118,7 +120,7 @@ if __name__ == '__main__':
 
     # a = stock.download('GTLS PR B',start='2023-01-01',end='2023-03-04')
     # print(a)
-    for name in investor[0:5]:
+    for name in investor[3:5]:
     
         df_season = sensonzier(df,name)
         new_ticker_list = new_tickers(df_season)
@@ -142,7 +144,7 @@ if __name__ == '__main__':
         same_average = tol_ave_same/len(same)
         y = (tol_average,same_average)
         average_dict = {name : y}
-
+ 
     print(average_dict)
 
 
